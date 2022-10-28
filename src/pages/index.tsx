@@ -1,20 +1,26 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useActiveWeb3React } from "hooks/useActiveWeb3React";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { injected } from "config/constants/wallets";
 import { connectorLocalStorageKey } from "config/connectors/index";
 import { useContract } from "hooks/useContract";
 import testAbi from '../abi/test.json'
 import { useTranslation } from "react-i18next";
+import { NetworkContextName } from "config/index";
+import { languageList } from '../react-i18next/locales/resources.js'
 
 import Image from 'next/image'
 import HeaderIconBn from '../../public/bn_icon.png'
 import languageIcon from '../../public/switch language_icon.png'
 const Home: NextPage = () => {
+    const [isShowLanguage, SetIsShowLanguage] = useState(false)
+    const [currLanguage, SetCurrLanguage] = useState(0)
     const { t, i18n } = useTranslation();
     const { account, chainId, error, activate } = useActiveWeb3React();
+    const { active } = useWeb3React();
+    const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName);
     const contract = useContract('0xB60F13A9D370f14aA267E3eCD6af1Ef26F5A004B', testAbi, true)
     useEffect(() => {
         console.log(window.localStorage.getItem(connectorLocalStorageKey));
@@ -39,16 +45,38 @@ const Home: NextPage = () => {
                 <div className="Header">
                     <div className="HeaderIconBox">
                         <Image src={HeaderIconBn}
-                            //  layout='fill'
                             className="HeaderIcon" alt="" />
                         <div className="HeaderIconText">BEP 1.39</div>
                     </div>
                     <div className="languageIconBox">
                         <Image src={languageIcon}
-                            //  layout='fill'
-                            className="languageIcon" alt="" />
+                            className="languageIcon" alt="" onClick={() => {
+                                SetIsShowLanguage(!isShowLanguage)
+                            }} />
+                        {
+                            isShowLanguage && languageList && <div className="languageSelectBox">
+                                {
+                                    languageList.map((item, idx) => {
+
+                                        return (
+                                            <div key={item.languageTitle + idx} className={currLanguage == idx ? 'languageSelectItem currLanguageSelectItem' : 'languageSelectItem'} onClick={() => {
+                                                SetCurrLanguage(idx)
+                                                i18n.changeLanguage(item.languageName)
+                                                SetIsShowLanguage(false)
+                                            }}>{item.languageTitle}</div>
+                                        )
+
+                                    })
+                                }
+                            </div>
+                        }
+
+
                         <div className="accountBox">
-                            {account}
+                            {
+                                !active && networkError ? "unknownError" : account?.substring(0, 4) + '...' + account?.substring(account.length - 5, account.length - 1)
+                            }
+                            {/* {account} */}
                         </div>
                     </div>
                 </div>
