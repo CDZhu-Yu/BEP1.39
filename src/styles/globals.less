@@ -1,6 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+
+}
+
+html,
+body {
+    background-color: #14171D;
+
 }
 
 .HeaderBox {
@@ -56,6 +63,7 @@
                 box-sizing: border-box;
                 opacity: 0.8;
                 // display: none;
+                z-index: 999;
 
                 &::before {
                     content: '';
@@ -117,5 +125,350 @@
             }
         }
 
+    }
+}
+
+.contentBox {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &>div {
+        position: relative;
+    }
+
+    .pageBackground {
+        position: absolute;
+    }
+
+    .statusBox {
+        margin-top: 40px;
+        width: 1000px;
+        height: 240px;
+        padding: 45px 50px;
+        box-sizing: border-box;
+
+        &>div {
+            position: relative;
+        }
+
+        .statusBackground {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .statusItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:last-child {
+                margin-top: 66px;
+            }
+
+            .itemLeft {
+                display: flex;
+                align-items: center;
+
+                .identity_icon {
+                    margin-right: 28px;
+                }
+
+                .itemText {
+                    font-size: 26px;
+                    font-weight: 400;
+                    color: #FFFFFF;
+                }
+            }
+
+            .itemRight {
+                font-size: 26px;
+                font-weight: 500;
+                color: #FFFFFF;
+            }
+
+        }
+    }
+
+    .qualifyingBox {
+        width: 1000px;
+        height: 1150px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        margin-top: 30px;
+        padding: 50px;
+        box-sizing: border-box;
+
+        .quabg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .qualifyingTitle {
+            display: flex;
+            align-items: center;
+
+            .qualifying_icon {
+                margin-right: 28px;
+            }
+
+            .qualifyingTitleText {
+                font-size: 26px;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+        }
+
+        .startQualifying {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto;
+            margin-top: 39px;
+            animation: startQua 0.5s ease infinite alternate-reverse;
+            transform: scale(1);
+
+            .startQualifying_icon {}
+        }
+
+        .invitationLinkBox {
+            width: 805px;
+            height: 320px;
+            border-radius: 23px;
+            border: 1px solid #0F0F0F;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding: 35px 84px 30px 84px;
+            box-sizing: border-box;
+            position: relative;
+
+            .invitationLinkTitle {
+                font-size: 24px;
+                font-weight: 500;
+                color: #FFFFFF;
+                text-align: center;
+            }
+
+            .invitationLink {
+                width: 640px;
+                height: 80px;
+                border-radius: 14px;
+                border: 3px solid #656568;
+                margin-top: 32px;
+                line-height: 80px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 400;
+                color: #999999;
+            }
+
+            .copyBtn {
+                width: 640px;
+                height: 80px;
+                background: #E2BD18;
+                border-radius: 14px;
+                margin-top: 30px;
+                font-size: 20px;
+                font-weight: 400;
+                color: #210C00;
+                text-align: center;
+                line-height: 80px;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+
+        .myFarmBox {
+            width: 805px;
+            height: 334px;
+            border-radius: 23px;
+            border: 1px solid #0F0F0F;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 30px 226px;
+            box-sizing: border-box;
+            position: relative;
+
+
+            .myFarmTitle {
+                font-size: 24px;
+                font-weight: 500;
+                color: #FFFFFF;
+                text-align: center;
+            }
+
+            .myFarmIconBox {
+                display: flex;
+                // justify-content: space-between;
+                margin-top: 27px;
+                margin-bottom: 40px;
+
+                .myFarmIconItem {
+                    margin-right: 80px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .inviteFarm {
+                font-size: 40px;
+                font-weight: 500;
+                color: #E2BD18;
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+
+        @keyframes startQua {
+            to {
+                transform: scale(1.2)
+            }
+        }
+    }
+
+    .prizePoolBox {
+        width: 1000px;
+        height: 663px;
+        margin-top: 30px;
+        padding: 45px 50px;
+        box-sizing: border-box;
+        position: relative;
+
+        &>div {
+            position: relative;
+        }
+
+        .prize_pool_bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .prizePoolBoxTitle {
+            display: flex;
+            align-items: center;
+
+            .prize_pool_icon {
+                margin-right: 28px;
+            }
+
+            .prizePoolBoxTitleText {
+                font-size: 26px;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+        }
+
+        .prizePoolNum {
+            position: relative;
+            margin: 0 auto;
+            width: 244px;
+            height: 77px;
+            margin-top: 70px;
+
+            &>div {
+                position: relative;
+            }
+
+            .prizePoolNum_bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .prizePoolText {
+                font-size: 26px;
+                font-weight: 400;
+                color: #FFFFFF;
+                text-align: center;
+                line-height: 77px;
+            }
+
+
+        }
+
+        .currentAwardNumber,
+        .nextPrizeNumber {
+            font-size: 26px;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 64px;
+        }
+
+        .currentAwardCode,
+        .nextPrizeCode {
+            font-size: 40px;
+            font-weight: 500;
+            color: #E2BD18;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+
+    }
+
+    .myEarnings {
+        width: 1000px;
+        height: 310px;
+        margin-top: 30px;
+        position: relative;
+        padding: 47px 50px 35px 50px;
+        box-sizing: border-box;
+
+        &>div {
+            position: relative;
+        }
+
+        .incomel_bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .myEarningsTitle {
+            display: flex;
+            align-items: center;
+
+            .incomel_icon {
+                margin-right: 28px;
+            }
+
+            .myEarningsTitleText {
+                font-size: 26px;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+
+        }
+
+        .earningsBox {
+            padding: 0 70px;
+            font-size: 20px;
+            font-weight: 400;
+            color: #FFFFFF;
+            margin-top: 40px;
+
+            .earningsBoxItem {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 30px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+
+                .earningsBoxItemRight {
+                    width: 174px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
     }
 }

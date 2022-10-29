@@ -42,7 +42,7 @@ export const languageList = [{
     languageName: 'kr',
     languageTitle: '한국인'
 }, {
-    languageName: 'ch',
+    languageName: 'zh',
     languageTitle: '简体中文'
 }, {
     languageName: 'chz',

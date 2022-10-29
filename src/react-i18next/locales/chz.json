@@ -1,3 +1,20 @@
 {
-    "currentStatus": "當前身份"
+    "currentStatus": "當前身份",
+    "farm": "農場",
+    "manor": "莊園",
+    "notInvolved": "未參與",
+    "myNumber": "我的編號",
+    "qualifying": "參與排位",
+    "invitationLink": "邀請鏈接",
+    "participateFirst": "需先參與",
+    "copy": "複製",
+    "myFarm": "我的農場",
+    "NumberOfFarms": "農場數量",
+    "prizePool": "獎金池",
+    "currentAwardNumber": "當前獲獎編號",
+    "nextPrizeNumber": "最新編號",
+    "myEarnings": "我的收益",
+    "farmIncome": "農場收益",
+    "FarmIncome": "農莊收益",
+    "estateIncome": "莊園收益"
 }

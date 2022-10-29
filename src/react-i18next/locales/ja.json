@@ -1,3 +1,20 @@
 {
-    "currentStatus": "現在のステータス"
+    "currentStatus": "現在のステータス",
+    "farm": "農場",
+    "manor": "荘園",
+    "notInvolved": "関与していない",
+    "myNumber": "私の番号",
+    "qualifying": "予選",
+    "invitationLink": "招待リンク",
+    "participateFirst": "最初に参加する",
+    "copy": "コピー",
+    "myFarm": "私の農場",
+    "NumberOfFarms": "農場数",
+    "prizePool": "賞金プール",
+    "currentAwardNumber": "現在の特典番号",
+    "nextPrizeNumber": "次回当選番号",
+    "myEarnings": "私の収入",
+    "farmIncome": "農業収入",
+    "FarmIncome": "農業収入",
+    "estateIncome": "不動産所得"
 }

@@ -1,3 +1,20 @@
 {
-    "currentStatus": "estado actual"
+    "currentStatus": "estado actual",
+    "farm": "granja",
+    "manor": "señorío",
+    "notInvolved": "No involucrado",
+    "myNumber": "mi número",
+    "qualifying": "Calificación",
+    "invitationLink": "Enlace de invitación",
+    "participateFirst": "participar primero",
+    "copy": "Copiar",
+    "myFarm": "mi granja",
+    "NumberOfFarms": "Número de fincas",
+    "prizePool": "Bolsa de premios",
+    "currentAwardNumber": "Número de premio actual",
+    "nextPrizeNumber": "siguiente número de premio",
+    "myEarnings": "Mis Ganancias",
+    "farmIncome": "ingresos agrícolas",
+    "FarmIncome": "ingresos agrícolas",
+    "estateIncome": "ingresos patrimoniales"
 }

@@ -1,3 +1,20 @@
 {
-    "currentStatus": "current status"
+    "currentStatus": "current status",
+    "farm": "farm",
+    "manor": "manor",
+    "notInvolved": "not involved",
+    "myNumber": "my number",
+    "qualifying": "qualifying",
+    "invitationLink": "Invitation link",
+    "participateFirst": "Participate first",
+    "copy": "copy",
+    "myFarm": "my farm",
+    "NumberOfFarms": "Number of farms",
+    "prizePool": "Prize Pool",
+    "currentAwardNumber": "Current award number",
+    "nextPrizeNumber": "next prize number",
+    "myEarnings": "my earnings",
+    "farmIncome": "farm income",
+    "FarmIncome": "farm income",
+    "estateIncome": "estate income"
 }

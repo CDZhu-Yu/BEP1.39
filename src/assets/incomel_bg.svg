@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000px" height="310px" viewBox="0 0 1000 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>incomel_bg</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1000" height="310" rx="24"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页--pc" transform="translate(-461.000000, -2263.000000)">
+            <g id="Group-17-Copy" transform="translate(461.000000, 2263.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill-opacity="0.0975196678" fill="#FFFFFF" xlink:href="#path-1"></use>
+                <g opacity="0.49894787" mask="url(#mask-2)" fill-opacity="0.0572518302" id="Group-16">
+                    <g transform="translate(-168.000000, 143.000000)">
+                        <circle id="Oval" fill="#E2BD18" cx="167" cy="167" r="167"></circle>
+                        <circle id="Oval" fill="#E2BD18" cx="167" cy="173.863014" r="129.634703"></circle>
+                        <circle id="Oval" fill="#E2BD18" cx="167" cy="167.762557" r="94.5570776"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

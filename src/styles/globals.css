@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
 }
+html,
+body {
+  background-color: #14171D;
+}
 .HeaderBox {
   background-color: #2D2E32;
   width: 100%;
@@ -49,6 +53,7 @@
   padding: 20px;
   box-sizing: border-box;
   opacity: 0.8;
+  z-index: 999;
 }
 .HeaderBox .Header .languageIconBox .languageSelectBox::before {
   content: '';
@@ -99,4 +104,287 @@
   margin-left: 40px;
   text-align: center;
   line-height: 34px;
+}
+.contentBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contentBox > div {
+  position: relative;
+}
+.contentBox .pageBackground {
+  position: absolute;
+}
+.contentBox .statusBox {
+  margin-top: 40px;
+  width: 1000px;
+  height: 240px;
+  padding: 45px 50px;
+  box-sizing: border-box;
+}
+.contentBox .statusBox > div {
+  position: relative;
+}
+.contentBox .statusBox .statusBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.contentBox .statusBox .statusItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contentBox .statusBox .statusItem:last-child {
+  margin-top: 66px;
+}
+.contentBox .statusBox .statusItem .itemLeft {
+  display: flex;
+  align-items: center;
+}
+.contentBox .statusBox .statusItem .itemLeft .identity_icon {
+  margin-right: 28px;
+}
+.contentBox .statusBox .statusItem .itemLeft .itemText {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.contentBox .statusBox .statusItem .itemRight {
+  font-size: 26px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.contentBox .qualifyingBox {
+  width: 1000px;
+  height: 1150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  margin-top: 30px;
+  padding: 50px;
+  box-sizing: border-box;
+}
+.contentBox .qualifyingBox .quabg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.contentBox .qualifyingBox .qualifyingTitle {
+  display: flex;
+  align-items: center;
+}
+.contentBox .qualifyingBox .qualifyingTitle .qualifying_icon {
+  margin-right: 28px;
+}
+.contentBox .qualifyingBox .qualifyingTitle .qualifyingTitleText {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.contentBox .qualifyingBox .startQualifying {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+  margin-top: 39px;
+  animation: startQua 0.5s ease infinite alternate-reverse;
+  transform: scale(1);
+}
+.contentBox .qualifyingBox .invitationLinkBox {
+  width: 805px;
+  height: 320px;
+  border-radius: 23px;
+  border: 1px solid #0F0F0F;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 35px 84px 30px 84px;
+  box-sizing: border-box;
+  position: relative;
+}
+.contentBox .qualifyingBox .invitationLinkBox .invitationLinkTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+}
+.contentBox .qualifyingBox .invitationLinkBox .invitationLink {
+  width: 640px;
+  height: 80px;
+  border-radius: 14px;
+  border: 3px solid #656568;
+  margin-top: 32px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: #999999;
+}
+.contentBox .qualifyingBox .invitationLinkBox .copyBtn {
+  width: 640px;
+  height: 80px;
+  background: #E2BD18;
+  border-radius: 14px;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #210C00;
+  text-align: center;
+  line-height: 80px;
+  cursor: pointer;
+  user-select: none;
+}
+.contentBox .qualifyingBox .myFarmBox {
+  width: 805px;
+  height: 334px;
+  border-radius: 23px;
+  border: 1px solid #0F0F0F;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 30px 226px;
+  box-sizing: border-box;
+  position: relative;
+}
+.contentBox .qualifyingBox .myFarmBox .myFarmTitle {
+  font-size: 24px;
+  font-weight: 500;
+  color: #FFFFFF;
+  text-align: center;
+}
+.contentBox .qualifyingBox .myFarmBox .myFarmIconBox {
+  display: flex;
+  margin-top: 27px;
+  margin-bottom: 40px;
+}
+.contentBox .qualifyingBox .myFarmBox .myFarmIconBox .myFarmIconItem {
+  margin-right: 80px;
+}
+.contentBox .qualifyingBox .myFarmBox .myFarmIconBox .myFarmIconItem:last-child {
+  margin-right: 0;
+}
+.contentBox .qualifyingBox .myFarmBox .inviteFarm {
+  font-size: 40px;
+  font-weight: 500;
+  color: #E2BD18;
+  text-align: center;
+  margin-top: 20px;
+}
+@keyframes startQua {
+  to {
+    transform: scale(1.2);
+  }
+}
+.contentBox .prizePoolBox {
+  width: 1000px;
+  height: 663px;
+  margin-top: 30px;
+  padding: 45px 50px;
+  box-sizing: border-box;
+  position: relative;
+}
+.contentBox .prizePoolBox > div {
+  position: relative;
+}
+.contentBox .prizePoolBox .prize_pool_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.contentBox .prizePoolBox .prizePoolBoxTitle {
+  display: flex;
+  align-items: center;
+}
+.contentBox .prizePoolBox .prizePoolBoxTitle .prize_pool_icon {
+  margin-right: 28px;
+}
+.contentBox .prizePoolBox .prizePoolBoxTitle .prizePoolBoxTitleText {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.contentBox .prizePoolBox .prizePoolNum {
+  position: relative;
+  margin: 0 auto;
+  width: 244px;
+  height: 77px;
+  margin-top: 70px;
+}
+.contentBox .prizePoolBox .prizePoolNum > div {
+  position: relative;
+}
+.contentBox .prizePoolBox .prizePoolNum .prizePoolNum_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.contentBox .prizePoolBox .prizePoolNum .prizePoolText {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 77px;
+}
+.contentBox .prizePoolBox .currentAwardNumber,
+.contentBox .prizePoolBox .nextPrizeNumber {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 64px;
+}
+.contentBox .prizePoolBox .currentAwardCode,
+.contentBox .prizePoolBox .nextPrizeCode {
+  font-size: 40px;
+  font-weight: 500;
+  color: #E2BD18;
+  text-align: center;
+  margin-top: 20px;
+}
+.contentBox .myEarnings {
+  width: 1000px;
+  height: 310px;
+  margin-top: 30px;
+  position: relative;
+  padding: 47px 50px 35px 50px;
+  box-sizing: border-box;
+}
+.contentBox .myEarnings > div {
+  position: relative;
+}
+.contentBox .myEarnings .incomel_bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.contentBox .myEarnings .myEarningsTitle {
+  display: flex;
+  align-items: center;
+}
+.contentBox .myEarnings .myEarningsTitle .incomel_icon {
+  margin-right: 28px;
+}
+.contentBox .myEarnings .myEarningsTitle .myEarningsTitleText {
+  font-size: 26px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.contentBox .myEarnings .earningsBox {
+  padding: 0 70px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-top: 40px;
+}
+.contentBox .myEarnings .earningsBox .earningsBoxItem {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.contentBox .myEarnings .earningsBox .earningsBoxItem:first-child {
+  margin-top: 0;
+}
+.contentBox .myEarnings .earningsBox .earningsBoxItem .earningsBoxItemRight {
+  width: 174px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,3 +1,20 @@
 {
-    "currentStatus": "当前身份"
+    "currentStatus": "当前身份",
+    "farm": "农场",
+    "manor": "庄园",
+    "notInvolved": "未参与",
+    "myNumber": "我的编号",
+    "qualifying": "参与排位",
+    "invitationLink": "邀请链接",
+    "participateFirst": "需先参与",
+    "copy": "复制",
+    "myFarm": "我的农场",
+    "NumberOfFarms": "农场数量",
+    "prizePool": "奖金池",
+    "currentAwardNumber": "当前获奖编号",
+    "nextPrizeNumber": "最新编号",
+    "myEarnings": "我的收益",
+    "farmIncome": "农场收益",
+    "FarmIncome": "农庄收益",
+    "estateIncome": "庄园收益"
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>gd_icon</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页--pc" transform="translate(-1072.000000, -1246.000000)" fill="#E2BD18">
+            <g id="Group-8" transform="translate(460.000000, 390.000000)">
+                <g id="Group-25" transform="translate(612.000000, 856.000000)">
+                    <path d="M32,0.8 C40.61588,0.8 48.4158834,4.29205425 54.0619146,9.93808541 C59.7079457,15.5841166 63.2,23.38412 63.2,32 C63.2,40.6156465 59.7078781,48.4157111 54.0617573,54.0618319 C48.4157392,59.7078499 40.6158015,63.2 32,63.2 C23.3843153,63.2 15.5843469,59.7078161 9.93828406,54.0617532 C4.29216986,48.415639 0.8,40.6156073 0.8,32 C0.8,23.3841592 4.29210217,15.5841887 9.93812678,9.93816405 C15.5842027,4.29208809 23.3842367,0.8 32,0.8 Z" id="Path" stroke-opacity="0.498547107" stroke="#E2BD18" stroke-width="1.6" fill-opacity="0.199461183"></path>
+                    <circle id="Oval" fill-opacity="0.497824929" cx="19.2" cy="32" r="3.2"></circle>
+                    <circle id="Oval-Copy-2" fill-opacity="0.497824929" cx="32" cy="32" r="3.2"></circle>
+                    <circle id="Oval-Copy-3" fill-opacity="0.497824929" cx="44.8" cy="32" r="3.2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

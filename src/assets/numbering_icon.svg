@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>numbering_icon</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页--pc" transform="translate(-510.000000, -274.000000)">
+            <g id="Group-3" transform="translate(460.000000, 120.000000)">
+                <g id="Group-6" transform="translate(50.000000, 154.000000)">
+                    <g id="Group-21" transform="translate(1.000000, 1.000000)">
+                        <g id="Group-5" transform="translate(6.125000, 1.999523)">
+                            <text id="1" font-family="PingFangSC-Semibold, PingFang SC" font-size="9.09090909" font-weight="500" fill="#FFE347">
+                                <tspan x="1.01136364" y="10">1</tspan>
+                            </text>
+                            <text id="2" font-family="PingFangSC-Semibold, PingFang SC" font-size="9.09090909" font-weight="500" fill="#FFE347">
+                                <tspan x="0.147727273" y="20.9049406">2</tspan>
+                            </text>
+                            <text id="3" font-family="PingFangSC-Semibold, PingFang SC" font-size="9.09090909" font-weight="500" fill="#FFE347">
+                                <tspan x="0.147727273" y="31.8165092">3</tspan>
+                            </text>
+                            <line x1="11.6561265" y1="6.27449637" x2="25.4743083" y2="6.36107822" id="Path-2" stroke="#FFE347" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="11.6561265" y1="17.1838087" x2="25.4743083" y2="17.2703906" id="Path-2-Copy-2" stroke="#FFE347" stroke-width="2" stroke-linecap="round"></line>
+                            <line x1="11.6561265" y1="28.0931211" x2="25.4743083" y2="28.1797029" id="Path-2-Copy-3" stroke="#FFE347" stroke-width="2" stroke-linecap="round"></line>
+                        </g>
+                        <rect id="Rectangle" stroke="#FFE347" stroke-width="2" x="1" y="1" width="38" height="38" rx="3.29004329"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

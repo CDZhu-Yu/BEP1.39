@@ -1,3 +1,20 @@
 {
-    "currentStatus": "현재 상태"
+    "currentStatus": "현재 상태",
+    "farm": "농장",
+    "manor": "장원",
+    "notInvolved": "연루되지 않은",
+    "myNumber": "내 번호",
+    "qualifying": "자격",
+    "invitationLink": "초대 링크",
+    "participateFirst": "먼저 참여",
+    "copy": "복사",
+    "myFarm": "내 농장",
+    "NumberOfFarms": "농장 수",
+    "prizePool": "상금 풀",
+    "currentAwardNumber": "현재 수상 번호",
+    "nextPrizeNumber": "다음 상금 번호",
+    "myEarnings": "내 수입",
+    "farmIncome": "농장 소득",
+    "FarmIncome": "농장 소득",
+    "estateIncome": "부동산 소득"
 }

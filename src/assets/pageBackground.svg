@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="2610px" viewBox="0 0 1920 2610" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>bg</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1921" height="2690"></rect>
+        <linearGradient x1="-10.7384003%" y1="-13.4760215%" x2="88.3981129%" y2="59.2170187%" id="linearGradient-3">
+            <stop stop-color="#E2BD18" offset="0%"></stop>
+            <stop stop-color="#E27D18" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="34.1230034%" y1="42.7383272%" x2="91.6499072%" y2="79.0236067%" id="linearGradient-4">
+            <stop stop-color="#FFEA8D" offset="0%"></stop>
+            <stop stop-color="#E2BD18" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-18" transform="translate(0.000000, -80.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#14171D" xlink:href="#path-1"></use>
+            <g id="Group-14" mask="url(#mask-2)">
+                <g transform="translate(-107.000000, 123.000000)">
+                    <circle id="椭圆形" fill="url(#linearGradient-3)" transform="translate(179.000000, 2490.000000) scale(-1, 1) translate(-179.000000, -2490.000000) " cx="179" cy="2490" r="179"></circle>
+                    <circle id="椭圆形备份" fill="url(#linearGradient-3)" cx="1812" cy="1317" r="61"></circle>
+                    <g id="Group-17-Copy-2" stroke-width="1" fill="none" transform="translate(454.000000, 595.872727)" fill-opacity="0.0572518302">
+                        <g id="Group-16" transform="translate(0.000000, 0.127273)" fill="#E2BD18">
+                            <circle id="Oval" cx="101.5" cy="101.5" r="101.5"></circle>
+                            <circle id="Oval" cx="101.5" cy="105.671233" r="78.7899543"></circle>
+                            <circle id="Oval" cx="101.5" cy="101.96347" r="57.4703196"></circle>
+                        </g>
+                    </g>
+                    <circle id="椭圆形-copy" fill="url(#linearGradient-4)" opacity="0.396763393" transform="translate(686.145455, 595.872727) scale(-1, 1) translate(-686.145455, -595.872727) " cx="686.145455" cy="595.872727" r="24.8727273"></circle>
+                    <g id="Group-17" stroke-width="1" fill="none" transform="translate(1198.000000, 0.000000)" fill-opacity="0.0572518302">
+                        <g id="Group-16" fill="#E2BD18">
+                            <circle id="Oval" cx="276.5" cy="276.5" r="276.5"></circle>
+                            <circle id="Oval" cx="276.5" cy="287.863014" r="214.634703"></circle>
+                            <circle id="Oval" cx="276.5" cy="277.762557" r="156.557078"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
