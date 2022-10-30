@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { injected } from "config/constants/wallets";
 import { connectorLocalStorageKey } from "config/connectors/index";
-import { useContract } from "hooks/useContract";
+import { useContract, web3UseConnect } from "hooks/useContract";
 import testAbi from '../abi/test.json'
 import { useTranslation } from "react-i18next";
 import { NetworkContextName } from "config/index";
@@ -28,6 +28,8 @@ import k from '../assets/k.svg'
 import incomel_bg from '../assets/incomel_bg.svg'
 import incomel_icon from '../assets/incomel_icon.svg'
 import start from '../assets/start.png'
+import BigNumber from 'bignumber.js'
+import { utils } from 'ethers/lib/ethers'
 
 const Home: NextPage = () => {
     // 是否展示语言选择框
@@ -41,19 +43,21 @@ const Home: NextPage = () => {
     // 邀请链接
     const [InvitationLink, SetInvitationLink] = useState('0')
     // 已邀请农场数
-    const [inviteFarm, SetInviteFarm] = useState('1')
+    const [inviteFarm, SetInviteFarm] = useState('0')
     // 奖金池金额
     const [prizePoolNum, SetPrizePoolNum] = useState(0)
     // 当前获奖编号
-    const [currentAwardNumber, SetCurrentAwardNumber] = useState('0')
+    const [currentAwardNumber, SetCurrentAwardNumber] = useState('BFP1139')
     // 最新编号
-    const [nextPrizeNumber, SetNextPrizeNumber] = useState('0')
+    const [nextPrizeNumber, SetNextPrizeNumber] = useState('BFP1139')
     // 农场收益
     const [farmIncome, SetFarmIncome] = useState('0')
     // 农庄收益
     const [IFarmIncome, SetIFarmIncome] = useState('0')
     // 庄园收益
     const [estateIncome, SetEstateIncome] = useState('0')
+    // 邀请地址
+    const [inviteAddress, SetInviteAddress] = useState('')
 
 
 
@@ -61,14 +65,87 @@ const Home: NextPage = () => {
     const { account, chainId, error, activate } = useActiveWeb3React();
     const { active } = useWeb3React();
     const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName);
-    const contract = useContract('0xB60F13A9D370f14aA267E3eCD6af1Ef26F5A004B', testAbi, true)
+    const contract = web3UseConnect(testAbi, '0x04d048C48c7df176293EaAA9B19a15Efa55E1462')
+    // console.log(contract?.getInviteNum(account));
+    // BalanceOfContract = await contract.methods.getBalanceOfContract()
     useEffect(() => {
-        console.log(window.localStorage.getItem(connectorLocalStorageKey));
+        // console.log(window.localStorage.getItem(connectorLocalStorageKey));
+        if (!account) {
+            return
+        }
+        console.log(account);
+        // 初始化数据
+        initData()
 
+    }, [account]);
+    // 获取邀请地址
+    useEffect(() => {
+        const query = window.location.href.split('=')[1]
+        if (query) {
+            SetInviteAddress(query)
+        }
+    }, [])
+    const initData = async () => {
+        // 获取是否开始排位
+        const isRank = await contract.methods.isRank(account).call()
+        if (!isRank) {
+            return
+        }
+        // 获取奖池金额
+        const BalanceOfContract = await contract.methods.getBalanceOfContract().call()
+        // 设置奖池金额
+        SetPrizePoolNum(Number(new BigNumber(BalanceOfContract).div(10 ** 18).toFixed(2)))
+        // 获取邀请数量数组[一代,二代,三-七代]
+        const inviteNumArr = await contract.methods.getInviteNum(account).call()
+        console.log(inviteNumArr);
+        // 设置身份
+        if (inviteNumArr[0] > 2) {
+            SetCurrStatus("manor")
+        }
+        // 设置分级收益
+        SetFarmIncome(new BigNumber('0.5').times(1000).times(inviteNumArr[0]).div(1000).toString())
+        SetIFarmIncome(new BigNumber('0.2').times(1000).times(inviteNumArr[1]).div(1000).toString())
+        SetEstateIncome(new BigNumber('0.02').times(1000).times(inviteNumArr[2]).div(1000).toString())
+        // 设置我的农场数量
+        SetInviteFarm(inviteNumArr[0])
+        // 获取我的编号
+        const addressRank = await contract.methods.getAddressRank(account).call()
+        // 设置我的编号
+        SetCurrCode(`BFP${1139 + Number(addressRank) + 1}`)
+        // 设置邀请链接
+        SetInvitationLink('http://localhost:3000/?address=' + account)
+        // 获取最新编号
+        const LastRank = await contract.methods.getLastAddressRank().call()
+        // 设置最新编号
+        SetNextPrizeNumber(`BFP${1139 + Number(LastRank) + 1}`)
+        // 查询是否有人获奖
+        const isHaveRewards = await contract.methods.isHaveReward().call()
+
+        if (isHaveRewards) {
+            // 获取最新获奖编号
+            const LastRewardRank = await contract.methods.getRewardAddressRank().call()
+            // 设置最新获奖编号
+            SetCurrentAwardNumber(`BFP${1139 + Number(LastRewardRank) + 1}`)
+        }
+
+
+    }
+
+    // 连接钱包 pc支持metamask和coinbase 手机各大钱包都支持
+    const connectWallet = () => {
         activate(injected, undefined, true).catch((error) => {
             activate(injected);
         });
-    }, []);
+    }
+    // 开始排位
+    const startRank = () => {
+        if (!inviteAddress) {
+            return
+        }
+        contract?.methods.pay(inviteAddress).send({ from: account, value: utils.parseEther("1.39") })
+
+    }
+
     const testButton = () => {
         console.log(1);
 
@@ -112,9 +189,9 @@ const Home: NextPage = () => {
                         }
 
 
-                        <div className="accountBox">
+                        <div className="accountBox" onClick={connectWallet}>
                             {
-                                !active && networkError ? "unknownError" : account?.substring(0, 4) + '...' + account?.substring(account.length - 5, account.length - 1)
+                                !account ? "connect" : !active && networkError ? "unknownError" : account?.substring(0, 4) + '...' + account?.substring(account.length - 5, account.length - 1)
                             }
                             {/* {account} */}
                         </div>
@@ -176,7 +253,7 @@ const Home: NextPage = () => {
                             {t('qualifying')}
                         </div>
                     </div>
-                    <div className="startQualifying">
+                    <div className="startQualifying" onClick={startRank}>
                         <div className="startQualifying_icon">
                             <Image src={start}
                                 alt="" />
