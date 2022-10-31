@@ -13,6 +13,7 @@ export function getLibrary(provider: any): Web3Provider {
 }
 
 const Web3ProviderNetwork = dynamic(() => import("../components/Web3ProviderNetwork/index"), { ssr: false });
+{/* <script src=""></script> */ }
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
