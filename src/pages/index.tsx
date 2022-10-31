@@ -121,7 +121,7 @@ const Home: NextPage = () => {
         // 设置我的编号
         SetCurrCode(`BFP${1139 + Number(addressRank) + 1}`)
         // 设置邀请链接
-        SetInvitationLink('http://localhost:3000/?address=' + account)
+        SetInvitationLink('http://97.74.84.218:3000/?address=' + account)
         // 设置邀请链接文字颜色
         SetIsInvitationLink(true)
 
