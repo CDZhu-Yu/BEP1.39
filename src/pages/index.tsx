@@ -6,7 +6,7 @@ import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { injected } from "config/constants/wallets";
 import { connectorLocalStorageKey } from "config/connectors/index";
 import { useContract, web3UseConnect } from "hooks/useContract";
-import testAbi from '../abi/test.json'
+import BFP139 from '../abi/BFP139.json'
 import { useTranslation } from "react-i18next";
 import { NetworkContextName } from "config/index";
 import { languageList } from '../react-i18next/locales/resources.js'
@@ -45,13 +45,13 @@ const Home: NextPage = () => {
     // 邀请链接
     const [InvitationLink, SetInvitationLink] = useState('0')
     // 已邀请农场数
-    const [inviteFarm, SetInviteFarm] = useState('3')
+    const [inviteFarm, SetInviteFarm] = useState('0')
     // 奖金池金额
     const [prizePoolNum, SetPrizePoolNum] = useState(0)
     // 当前获奖编号
-    const [currentAwardNumber, SetCurrentAwardNumber] = useState('BFP1139')
+    const [currentAwardNumber, SetCurrentAwardNumber] = useState('139')
     // 最新编号
-    const [nextPrizeNumber, SetNextPrizeNumber] = useState('BFP1139')
+    const [nextPrizeNumber, SetNextPrizeNumber] = useState('139')
     // 农场收益
     const [farmIncome, SetFarmIncome] = useState('0')
     // 农庄收益
@@ -70,11 +70,9 @@ const Home: NextPage = () => {
     const { account, chainId, error, activate } = useActiveWeb3React();
     const { active } = useWeb3React();
     const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName);
-    const contract = web3UseConnect(testAbi, '0x04d048C48c7df176293EaAA9B19a15Efa55E1462')
-    // console.log(contract?.getInviteNum(account));
-    // BalanceOfContract = await contract.methods.getBalanceOfContract()
+    // 实例化合约
+    const contract = web3UseConnect(BFP139, '0x43a2a4ea38873c35bb126ed38f1251eca14c6feb')
     useEffect(() => {
-        // console.log(window.localStorage.getItem(connectorLocalStorageKey));
         if (!account) {
             return
         }
@@ -85,13 +83,16 @@ const Home: NextPage = () => {
     }, [account]);
     // 获取邀请地址
     useEffect(() => {
-        const query = window.location.href.split('=')[1]
+        const query = window.location.href.split("?")[1].split("&")[0].split("=")[1]
         if (query) {
             SetInviteAddress(query)
         }
         if (isMobile()) {
             import("amfe-flexible");
         }
+        activate(injected, undefined, true).catch((error) => {
+            activate(injected);
+        });
     }, [])
     const initData = async () => {
         // 获取是否开始排位
@@ -107,7 +108,7 @@ const Home: NextPage = () => {
         const inviteNumArr = await contract.methods.getInviteNum(account).call()
         console.log(inviteNumArr);
         // 设置身份
-        if (inviteNumArr[0] > 2) {
+        if (inviteNumArr[0] >= 2) {
             SetCurrStatus("manor")
         }
         // 设置分级收益
@@ -119,7 +120,7 @@ const Home: NextPage = () => {
         // 获取我的编号
         const addressRank = await contract.methods.getAddressRank(account).call()
         // 设置我的编号
-        SetCurrCode(`BFP${1139 + Number(addressRank) + 1}`)
+        SetCurrCode(`${152 + Number(addressRank) + 1}`)
         // 设置邀请链接
         SetInvitationLink('http://97.74.84.218:3000/?address=' + account)
         // 设置邀请链接文字颜色
@@ -128,7 +129,7 @@ const Home: NextPage = () => {
         // 获取最新编号
         const LastRank = await contract.methods.getLastAddressRank().call()
         // 设置最新编号
-        SetNextPrizeNumber(`BFP${1139 + Number(LastRank) + 1}`)
+        SetNextPrizeNumber(`${152 + Number(LastRank) + 1}`)
         // 查询是否有人获奖
         const isHaveRewards = await contract.methods.isHaveReward().call()
 
@@ -136,7 +137,7 @@ const Home: NextPage = () => {
             // 获取最新获奖编号
             const LastRewardRank = await contract.methods.getRewardAddressRank().call()
             // 设置最新获奖编号
-            SetCurrentAwardNumber(`BFP${1139 + Number(LastRewardRank) + 1}`)
+            SetCurrentAwardNumber(`${152 + Number(LastRewardRank) + 1}`)
         }
 
 
@@ -149,10 +150,14 @@ const Home: NextPage = () => {
         });
     }
     // 开始排位
-    const startRank = () => {
-        if (!inviteAddress) {
+    const startRank = async () => {
+        const isRank = await contract.methods.isRank(account).call()
+
+        if (!inviteAddress || isRank) {
+            alert('排位进行中')
             return
         }
+        // alert(contract)
         contract?.methods.pay(inviteAddress).send({ from: account, value: utils.parseEther("1.39") })
 
     }
@@ -278,7 +283,7 @@ const Home: NextPage = () => {
                                 {t('qualifying')}
                             </div>
                         </div>
-                        <div className="startQualifying" onClick={startRank} onTouchEnd={startRank}>
+                        <div className="startQualifying" onClick={startRank}>
                             <div className="startQualifying_icon">
                                 <Image src={start}
                                     alt="" />

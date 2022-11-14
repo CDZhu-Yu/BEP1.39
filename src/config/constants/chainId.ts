@@ -64,18 +64,18 @@
 // };
 
 export enum ChainId {
-    ETHEREUM = 1,
+    // ETHEREUM = 1,
     // ROPSTEN = 3,
-    RINKEBY = 4,
-    GÖRLI = 5,
+    // RINKEBY = 4,
+    // GÖRLI = 5,
     // KOVAN = 42,
     // MATIC = 137,
     // MATIC_TESTNET = 80001,
     // FANTOM = 250,
     // FANTOM_TESTNET = 4002,
     // XDAI = 100,
-    // BSC = 56,
-    BSC_TESTNET = 97,
+    BSC = 56,
+    // BSC_TESTNET = 97,
     // ARBITRUM = 42161,
     // ARBITRUM_TESTNET = 79377087078960,
     // MOONBEAM_TESTNET = 1287,

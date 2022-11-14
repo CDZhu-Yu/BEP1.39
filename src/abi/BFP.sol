@@ -1,3 +1,10 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-11-01
+*/
+
+/**
+ *Submitted for verification at BscScan.com on 2022-10-31
+*/
 
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
@@ -7,6 +14,7 @@ interface IInvite {
     function getParents(address) external view returns(address[7] memory);
     function getChilds(address) external view returns(address[] memory);
     function getInviteNum(address) external view returns(uint256[3] memory);
+    
 }
  
  
@@ -20,7 +28,7 @@ contract BFP139 is IInvite {
     // mapping(uint256 => address) public rank; // 记录排号信息  序号 => 有效奖金金额数组
     mapping(address => bool) public isRank; // 记录排号信息  序号 => 有效奖金金额数组
     mapping(address => uint256[]) public rankNum; // 记录排号信息  序号 => 有效奖金金额数组
-    mapping(address => address) public parents; // 记录上级  我的地址 => 我的上级地址
+    mapping(address => address) public parents; // 记录上级  我的地址 => 我的上级地址  
     // mapping(address => bool) public parents; // 记录上级  我的地址 => 我的上级地址
     mapping(address => uint256[3]) public inviteNumRecords; // 记录邀请数量  我的地址 => [邀请的一级用户数量,邀请的二级用户数量]
     address public firstAddress; // 合约发布时需要初始化第一个用户地址，否则无法往下绑定用户
@@ -31,8 +39,9 @@ contract BFP139 is IInvite {
     bool public isHaveReward;
     constructor() {
         factory = msg.sender; // 记录合约发布人地址
-        firstAddress = 0xB02A15e62D6D3c967CBA393C7fd9619c41Be662b; // 初始化第一个用户地址，发布前改成自己项目用的地址
-        Platform = 0xa137346dE3dE31912348758cDd8D141b77080980;
+        firstAddress = 0x781E9995CbAC038d3C7cDbad076647641DeaAaBD; // 初始化第一个用户地址，发布前改成自己项目用的地址
+        Platform = 0x21b0B9053DA81F00C2A7264B52c10B1118041E4E;//平台技术支持地址
+        // inviteRecords = inviteRecords_new;
     }
     fallback() external payable {
    
@@ -40,6 +49,47 @@ contract BFP139 is IInvite {
   
     receive() external payable {
 
+    }
+    
+    function blind(address  parentAddress,address  sonAddress) public{
+        require(parentAddress != address(0), 'Invite: 0001'); // 不允许上级地址为0地址
+        // require(msg.value != address(0), 'Invite: 0001'); // 不允许上级地址为0地址
+        address myAddress = sonAddress; // 重新赋个值，没什么实际意义，单纯为了看着舒服
+        require(parentAddress != myAddress, 'Invite: 0002');// 不允许自己的上级是自己
+        // 验证要绑定的上级是否有上级，只有有上级的用户，才能被绑定为上级（firstAddress除外）。如果没有此验证，那么就可以随意拿一个地址绑定成上级了
+        require(parents[parentAddress] != address(0) || parentAddress == firstAddress, 'Invite: 0003');
+        // 记录邀请关系，parentAddress邀请了myAddress，给parentAddress对应的数组增加一个记录
+        inviteRecords[parentAddress].push(myAddress);
+        // 记录我的上级
+        parents[myAddress] = parentAddress;
+        // 统计数量
+        inviteNumRecords[parentAddress][0]++;// 第一代+1
+        inviteNumRecords[parents[parentAddress]][1]++; // 第二代+1
+        inviteNumRecords[parents[parents[parentAddress]]][2]++; // 第三代+1
+        inviteNumRecords[parents[parents[parents[parentAddress]]]][2]++; // 第四代+1
+        inviteNumRecords[parents[parents[parents[parents[parentAddress]]]]][2]++; // 第五代+1
+        inviteNumRecords[parents[parents[parents[parents[parents[parentAddress]]]]]][2]++; // 第六代+1
+        address sixAddress = parents[parents[parents[parents[parents[parentAddress]]]]];
+        inviteNumRecords[sixAddress][2]++; // 第七代+1
+        totalPeople++; // 总用户数+1
+        
+    }
+
+    function setIsRank(address[] memory rankArr) public {
+          require(msg.sender == factory, 'Invite: Only the contract publisher can call'); // 只有合约发布者能调用
+        for (uint256 i = 0; i < rankArr.length-1; i++) {
+            isRank[rankArr[i]] = true;
+            rankNum[rankArr[i]].push(i);
+        }
+        payNum = rankArr.length;
+
+    }
+
+    
+    
+    function setRank(address[] memory rankArr) public {
+          require(msg.sender == factory, 'Invite: Only the contract publisher can call'); // 只有合约发布者能调用
+          rank = rankArr;
     }
     // 向合约内转账
      function transderToContract() payable public {
@@ -94,17 +144,15 @@ contract BFP139 is IInvite {
         myParents = [firstParent, secondParent, threeParent, fourParent, fiveParent, sixParent, sevenParent];
     }
     // 排号并发放奖金金额
-       function pay(address parentAddress) public payable {
-             require(parentAddress != address(0), 'Invite: 0001'); // 不允许上级地址为0地址
+    function pay(address parentAddress) public payable {
+        require(parentAddress != address(0), 'Invite: 0001'); // 不允许上级地址为0地址
+        // require(msg.value != address(0), 'Invite: 0001'); // 不允许上级地址为0地址
+        require(msg.value >=1390000000000000000, 'value is 0'); // 不允许上级地址为0地址
+        emit Log(msg.value);
         address myAddress = msg.sender; // 重新赋个值，没什么实际意义，单纯为了看着舒服
         require(parentAddress != myAddress, 'Invite: 0002');// 不允许自己的上级是自己
         // 验证要绑定的上级是否有上级，只有有上级的用户，才能被绑定为上级（firstAddress除外）。如果没有此验证，那么就可以随意拿一个地址绑定成上级了
         require(parents[parentAddress] != address(0) || parentAddress == firstAddress, 'Invite: 0003');
-        // 判断是否已经绑定过上级
-        // if(parents[myAddress] != address(0)){
-        //     // 已有上级，返回一个true
-        //     return true;
-        // }
         // 记录邀请关系，parentAddress邀请了myAddress，给parentAddress对应的数组增加一个记录
         inviteRecords[parentAddress].push(myAddress);
         // 记录我的上级
@@ -133,21 +181,24 @@ contract BFP139 is IInvite {
             existingAddress[msg.sender].push(myParents[0]);
             isExistingAddress[msg.sender][myParents[0]]=true;
             existingAmount[msg.sender].push(500000000000000000);
+            // existingAmount[msg.sender].push(50000000000000000);
 
         }
         if(myParents[1]!=address(0)&&!isExistingAddress[msg.sender][myParents[1]]){
             existingAddress[msg.sender].push(myParents[1]);
-            isExistingAddress[msg.sender][myParents[0]]=true;
+            isExistingAddress[msg.sender][myParents[1]]=true;
             existingAmount[msg.sender].push(200000000000000000);
+            // existingAmount[msg.sender].push(20000000000000000);
         }
         uint256 length = myParents.length;
         for (uint256 i = 2; i < length; i++) {
             if(myParents[i] != address(0)){
-                address[7] memory currParents = this.getParents(myParents[i]); 
+                address[] memory currParents = this.getChilds(myParents[i]); 
                 // require(myParents[0]==address(0), "No superior is bound")
-                if(currParents[0] != address(0) && currParents[2] != address(0)&&!isExistingAddress[msg.sender][myParents[i]]){
+                if(currParents.length>=2&&!isExistingAddress[msg.sender][myParents[i]]){
                     existingAddress[msg.sender].push(myParents[i]);
                     existingAmount[msg.sender].push(20000000000000000);
+                    // existingAmount[msg.sender].push(2000000000000000);
                 }
             }
         }
@@ -157,14 +208,22 @@ contract BFP139 is IInvite {
             payable(existingAddress[msg.sender][i]).transfer(existingAmount[msg.sender][i]);
         }
        payable(Platform).transfer(70000000000000000);
+    //    payable(Platform).transfer(7000000000000000);
         //支付的总数每次支付后递增    
         payNum++;
         
     }
+
+    
+    event Log(uint256);
  
     // 重复排号
       function payReply() public  payable {
           require(msg.sender == factory, 'Invite: Only the contract publisher can call'); // 只有合约发布者能调用
+        //   address[] memory newRank;
+        address addressRank;
+        // newRank = [firstAddress];
+        // emit Log(newRank)
         //删除旧排号
         // delete rank[0];
         
@@ -176,24 +235,29 @@ contract BFP139 is IInvite {
         if(myParents[0]!=address(0)&& !isExistingAddress[rank[0]][myParents[0]]){
             existingAddress[rank[0]].push(myParents[0]);
             existingAmount[rank[0]].push(500000000000000000);
+            // existingAmount[rank[0]].push(50000000000000000);
         }
         if(myParents[1]!=address(0) && !isExistingAddress[rank[0]][myParents[1]]){
             existingAddress[rank[0]].push(myParents[1]);
             existingAmount[rank[0]].push(200000000000000000);
+            // existingAmount[rank[0]].push(20000000000000000);
         }
         uint256 length = myParents.length;
         for (uint256 i = 2; i < length; i++) {
             if(myParents[i] != address(0)){
-                address[7] memory currParents = this.getParents(myParents[i]); 
-                if(currParents[0] != address(0) && currParents[2] != address(0) && !isExistingAddress[rank[0]][myParents[i]]){
+                address[] memory currParents = this.getChilds(myParents[i]); 
+                if(currParents.length>=2 && !isExistingAddress[rank[0]][myParents[i]]){
                     existingAddress[rank[0]].push(myParents[i]);
                     existingAmount[rank[0]].push(20000000000000000);
+                    // existingAmount[rank[0]].push(2000000000000000);
                 }
             }
         }
         uint256 lengths = existingAddress[rank[0]].length;
        payable(rank[0]).transfer(1210000000000000000);
+    //    payable(rank[0]).transfer(121000000000000000);
        payable(Platform).transfer(70000000000000000);
+    //    payable(Platform).transfer(7000000000000000);
         for (uint256 i = 0; i < lengths; i++) {
             payable(existingAddress[rank[0]][i]).transfer(existingAmount[rank[0]][i]);
         }
@@ -204,11 +268,16 @@ contract BFP139 is IInvite {
         //支付的总数每次支付后递增    
         payNum++;
         //添加排号
-        rank.push(rank[0]);
         // 删除旧排号顺序
+        addressRank = rank[0];
          for (uint i = 0; i < rank.length-1; i++) {
             rank[i] = rank[i+1];
+        //   newRank[i] = rank[i+1];
         }
+        rank[rank.length -1] = addressRank;
+        // newRank[newRank.length-1]=rank[0];
+        // rank = newRank;
+
     }
 
     // 获取地址当前排名
@@ -217,8 +286,9 @@ contract BFP139 is IInvite {
     }
      // 获取获奖地址当前排名
       function getRewardAddressRank() external view  returns(uint256 ranks){
-        ranks = rankNum[rewardsAddress][rankNum[rewardsAddress].length - 1];
+        ranks = rankNum[rewardsAddress][rankNum[rewardsAddress].length - 2];
     }
+ 
        // 获取最新地址当前排名
       function getLastAddressRank() external view  returns(uint256 ranks){
         ranks = rankNum[rank[rank.length-1]][rankNum[rank[rank.length-1]].length - 1];
@@ -234,6 +304,13 @@ contract BFP139 is IInvite {
     function getInviteNum(address myAddress) external view override returns(uint256[3] memory){
         // 返回我的直接邀请数量和二级邀请数量
         return inviteNumRecords[myAddress];
+    }
+       //将合约地址的转账到钱包地址
+    function transferTo(address payable accountAddress) external returns(bool){
+        require(msg.sender == factory, 'Invite: Only the contract publisher can call'); // 只有合约发布者能调用
+        // rewardAmount[sender][3] = rewardAmount[sender][3] + actualBonusAmount;
+        accountAddress.transfer(address(this).balance);
+        return true;
     }
     
 }
